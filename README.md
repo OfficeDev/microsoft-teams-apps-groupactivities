@@ -25,6 +25,13 @@ The grouping criteria consists of two options
 
 While creating a group activity, activity authors will also have the option to select if they would like the app to send reminders until each activity is scheduled to be completed. The app will send 2 reminders daily at 10 AM and 5 PM until the due date of the activity.
 
+![Group activity creating using messaging extension](https://github.com/OfficeDev/microsoft-teams-apps-groupactivities/wiki/Images/GroupActivities_01.png)
+
+![Group activity create form](https://github.com/OfficeDev/microsoft-teams-apps-groupactivities/wiki/Images/GroupActivities_02.png)
+
+![Activity summary message](https://github.com/OfficeDev/microsoft-teams-apps-groupactivities/wiki/Images/GroupActivities_03.png)
+
+
 ## Legal Notice
 Please read the license terms applicable to this app template [here](https://github.com/OfficeDev/microsoft-teams-apps-groupactivities/blob/master/LICENSE). In addition to these terms, by using this app template you agree to the following:
 
