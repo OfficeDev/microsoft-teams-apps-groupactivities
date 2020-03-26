@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AutoCreateChannelQuestionText" xml:space="preserve">
+    <value>Do you want to create channels for each group right now?</value>
+    <comment>Text to show on auto create channel field on create channel task module.</comment>
+  </data>
+  <data name="ChannelDesciptionValidationText" xml:space="preserve">
+    <value>Description is required.</value>
+    <comment>Validation text for channel description in the create channel task module.</comment>
+  </data>
+  <data name="ChannelTitleValidationText" xml:space="preserve">
+    <value>Name is required and do not accept characters ~#%&amp;*{}+/\:&lt;&gt;?|'"..</value>
+    <comment>Validation text for channel title in the create channel task module.</comment>
+  </data>
+  <data name="ChannelTypeQuestionText" xml:space="preserve">
+    <value>Channel type</value>
+    <comment>Text to show on channel type field on create channel task module.</comment>
+  </data>
+  <data name="SplitButtonText" xml:space="preserve">
+    <value>Create</value>
+    <comment>Text to show on create button to create channel.</comment>
+  </data>
+  <data name="GroupActivityDescriptionTitle" xml:space="preserve">
+    <value>Description</value>
+    <comment>Description Title on create channel activity task module.</comment>
+  </data>
+  <data name="GroupActivityTitle" xml:space="preserve">
+    <value>Activity</value>
+    <comment>Title to show on create channel activity task module.</comment>
+  </data>
+  <data name="DueDateText" xml:space="preserve">
+    <value>Due date</value>
+    <comment>Due date title on create channel activity task module.</comment>
+  </data>
+  <data name="DueDateEmptyValidationText" xml:space="preserve">
+    <value>Due date is required.</value>
+    <comment>Validation text for due date in the create channel task module.</comment>
+  </data>
+  <data name="InvalidTenant" xml:space="preserve">
+    <value>Invalid tenant detected.</value>
+    <comment>Text to show if invalid tenant.</comment>
+  </data>
+  <data name="NoTitle" xml:space="preserve">
+    <value>No</value>
+    <comment>No text to show for no choice in create channel task module</comment>
+  </data>
+  <data name="NotLoginText" xml:space="preserve">
+    <value>You are not logged in. Please sign in to create group activity.</value>
+    <comment>Text to show when user is not login and clicks on action in messaging extension.</comment>
+  </data>
+  <data name="NotTeamOwnerText" xml:space="preserve">
+    <value>I can't create your group activity. Ask your team owner to create one.</value>
+    <comment>Message to show in task module if user performing group activity is not a team owner.</comment>
+  </data>
+  <data name="PrivateChannelTypeText" xml:space="preserve">
+    <value>Private</value>
+    <comment>Text to show for channel type option private on create channel task module.</comment>
+  </data>
+  <data name="PublicChannelTypeText" xml:space="preserve">
+    <value>Public</value>
+    <comment>Text to show for channel type option public on create channel task module.</comment>
+  </data>
+  <data name="SigninCardText" xml:space="preserve">
+    <value>Sign in to send messages with Group Activities Bot.</value>
+    <comment>Sign in text to show in messaging extension.</comment>
+  </data>
+  <data name="SplitInGroupOfGivenMembers" xml:space="preserve">
+    <value>Number of people in each group</value>
+    <comment>Split in equal group of channel dropdown option for splitting criteria on task module.</comment>
+  </data>
+  <data name="SplitInGivenNumberOfGroups" xml:space="preserve">
+    <value>Total number of groups to create</value>
+    <comment>Split in number of channels dropdown option for splitting criteria on task module.</comment>
+  </data>
+  <data name="GroupCriteriaText" xml:space="preserve">
+    <value>Group criteria</value>
+    <comment>Group criteria title on create channel activity task module.</comment>
+  </data>
+  <data name="GroupCriteriaValidationText" xml:space="preserve">
+    <value>Group criteria is required.</value>
+    <comment>Validation text for Group criteria of channels in the create channel task module.</comment>
+  </data>
+  <data name="UnitsText" xml:space="preserve">
+    <value>Choose a number</value>
+    <comment>Unit title to show on create channel task module.</comment>
+  </data>
+  <data name="YesTitle" xml:space="preserve">
+    <value>Yes</value>
+    <comment>Yes text to show for yes choice in create channel task module.</comment>
+  </data>
+  <data name="NotificationText" xml:space="preserve">
+    <value>You have been added to a new group activity in {0} by {1}. Details as follows:</value>
+    <comment>Notification card text to be sent to channel. {0} is the channel name and {1} is activity created by</comment>
+  </data>
+  <data name="ChannelCountValidationText" xml:space="preserve">
+    <value>Try different group criteria. I can't create more than 30 private channels and 200 public channels.</value>
+    <comment>Text to show when channels to be created exceeds the limit.</comment>
+  </data>
+  <data name="GroupingMessageText" xml:space="preserve">
+    <value>Groups for this activity :</value>
+    <comment>Text to show in grouping detail card.</comment>
+  </data>
+  <data name="GoToOriginalThreadButtonText" xml:space="preserve">
+    <value>Go to original thread</value>
+    <comment>Text to show on go to original thread button.</comment>
+  </data>
+  <data name="UnitValidationText" xml:space="preserve">
+    <value>Try different group criteria. I can't create less than 2 groups or more than 30.</value>
+    <comment>Text to show for validation on create channel task module.</comment>
+  </data>
+  <data name="DueDateValidationText" xml:space="preserve">
+    <value>Due date cannot be a past date time.</value>
+    <comment>Validation text to show for due date that it must be 24 hrs from current date.</comment>
+  </data>
+  <data name="NoActivitiesFoundText" xml:space="preserve">
+    <value>No results found. Try a different keyword.</value>
+    <comment>Text to show when there are no activities to show in messaging extension.</comment>
+  </data>
+  <data name="CustomErrorMessage" xml:space="preserve">
+    <value>Something went wrong. Try again in a few minutes.</value>
+    <comment>Error message to show when bot fails.</comment>
+  </data>
+  <data name="WelcomeCardContent" xml:space="preserve">
+    <value>I can quickly divide your team into groups and assign activities with deadlines. 
+To get started, click on the small Group Activities Bot logo below where you type messages. If it's not visible, select **More options...**.</value>
+    <comment>Text to show welcome card as content.</comment>
+  </data>
+  <data name="WelcomeCardTitle" xml:space="preserve">
+    <value>Welcome!</value>
+    <comment>Text to show on welcome card</comment>
+  </data>
+  <data name="GroupCreatorActivityCardText" xml:space="preserve">
+    <value>**{0}** has created a new group activity :</value>
+    <comment>Text to show for activity creator in group activity card send in channel after successfull grouping.</comment>
+  </data>
+  <data name="GroupCriteriaFailText" xml:space="preserve">
+    <value>Try again. The number in each group must be less than the total in the team.</value>
+    <comment>Validation text to be shown when the number of groups entered is more or equal to number of members in the team.</comment>
+  </data>
+  <data name="TeamMembersDoesNotExistsText" xml:space="preserve">
+    <value>No team members available for grouping. Please add team members.</value>
+    <comment>Text to show when team does not contain any members.</comment>
+  </data>
+  <data name="ChannelCreationFailureSubText" xml:space="preserve">
+    <value>I couldn’t create channels for the following groups :</value>
+    <comment>Text to show in channel creation failure card.</comment>
+  </data>
+  <data name="NotificationQuestionText" xml:space="preserve">
+    <value>Do you want due-date reminders?</value>
+    <comment>Text to show in task module  for checkbox whether he want to send notification.</comment>
+  </data>
+  <data name="MentionText" xml:space="preserve">
+    <value>Group created :</value>
+    <comment>Text to show while mentioning members of the channel.</comment>
+  </data>
+  <data name="GroupingCardConclusionText" xml:space="preserve">
+    <value>There's a {0} channel for each group. Head to your channel to get started!</value>
+    <comment>Text to show in group activity card.</comment>
+  </data>
+  <data name="NotificationInformationText" xml:space="preserve">
+    <value>The bot will send the reminders two times a day.</value>
+    <comment>Text to show as the information about notification in task module.</comment>
+  </data>
+  <data name="NameLabel" xml:space="preserve">
+    <value>Name</value>
+    <comment>Label to show in group activity creation card.</comment>
+  </data>
+  <data name="ChannelCreationFailureText" xml:space="preserve">
+    <value>Here is an update for the activity **{0}**:</value>
+    <comment>Text to show in channel creation failure card.</comment>
+  </data>
+  <data name="DueTimeText" xml:space="preserve">
+    <value>Time</value>
+    <comment>Label to show on time selector for due date in adaptive card group activity creation. </comment>
+  </data>
+  <data name="NoTeamFoundErrorText" xml:space="preserve">
+    <value>Please try opening from the team where app is installed.</value>
+    <comment>Error message to show when bot is invoked in personal or group chat OR team information is not available.</comment>
+  </data>
+</root>
