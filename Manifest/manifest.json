@@ -5,10 +5,10 @@
   "id": "23daff4d-00f9-4f9e-93f4-578333dd626d",
   "packageName": "com.microsoft.teams.apptemplates.groupactivity",
   "developer": {
-    "name": "TCS",
-    "websiteUrl": "https://1d7c37b2.ngrok.io/",
-    "privacyUrl": "https://1d7c37b2.ngrok.io/",
-    "termsOfUseUrl": "https://1d7c37b2.ngrok.io/"
+    "name": "<company name>",
+    "websiteUrl": "<website url>",
+    "privacyUrl": "<privacy url>",
+    "termsOfUseUrl": "<terms of use url>"
   },
   "icons": {
     "color": "color.png",
@@ -25,7 +25,7 @@
   "accentColor": "#FFFFFF",
   "bots": [
     {
-      "botId": "d541c65f-68f8-42c7-a6ba-ff006f5861fe",
+      "botId": "<bot id>",
       "scopes": [
         "team"
       ],
@@ -104,6 +104,6 @@
   ],
   "validDomains": [
     "token.botframework.com",
-    "groupbot.azurewebsites.net"
+    "<validdomains>"
   ]
 }

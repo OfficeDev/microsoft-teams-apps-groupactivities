@@ -313,7 +313,7 @@ namespace Microsoft.Teams.Apps.GroupBot.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have been added to a new group activity in {0} by {1}. Details as follows:.
+        ///   Looks up a localized string similar to A gentle reminder to complete the activity in {0} by {1}. Details as follows:.
         /// </summary>
         public static string NotificationText {
             get {

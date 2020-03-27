@@ -206,7 +206,7 @@
     <comment>Yes text to show for yes choice in create channel task module.</comment>
   </data>
   <data name="NotificationText" xml:space="preserve">
-    <value>You have been added to a new group activity in {0} by {1}. Details as follows:</value>
+    <value>A gentle reminder to complete the activity in {0} by {1}. Details as follows:</value>
     <comment>Notification card text to be sent to channel. {0} is the channel name and {1} is activity created by</comment>
   </data>
   <data name="ChannelCountValidationText" xml:space="preserve">

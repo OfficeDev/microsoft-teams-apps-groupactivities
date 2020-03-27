@@ -8,6 +8,7 @@ namespace Microsoft.Teams.Apps.GroupBot.Bots
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
+    using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.ApplicationInsights;
@@ -194,23 +195,22 @@ namespace Microsoft.Teams.Apps.GroupBot.Bots
         protected override async Task<MessagingExtensionActionResponse> OnTeamsMessagingExtensionFetchTaskAsync(ITurnContext<IInvokeActivity> turnContext, MessagingExtensionAction action, CancellationToken cancellationToken)
         {
             var activity = turnContext.Activity;
-            try
+
+            var activityState = ((JObject)activity.Value).GetValue("state")?.ToString();
+            var tokenResponse = await (turnContext.Adapter as IUserTokenProvider).GetUserTokenAsync(turnContext, this.connectionName, activityState, cancellationToken);
+
+            if (tokenResponse == null)
             {
-                var activityState = ((JObject)activity.Value).GetValue("state")?.ToString();
-                var tokenResponse = await (turnContext.Adapter as IUserTokenProvider).GetUserTokenAsync(turnContext, this.connectionName, activityState, cancellationToken);
+                var signInLink = await (turnContext.Adapter as IUserTokenProvider).GetOauthSignInLinkAsync(turnContext, this.connectionName, cancellationToken);
 
-                if (tokenResponse == null)
+                return new MessagingExtensionActionResponse
                 {
-                    var signInLink = await (turnContext.Adapter as IUserTokenProvider).GetOauthSignInLinkAsync(turnContext, this.connectionName, cancellationToken);
-
-                    return new MessagingExtensionActionResponse
+                    ComposeExtension = new MessagingExtensionResult
                     {
-                        ComposeExtension = new MessagingExtensionResult
+                        Type = MessagingExtensionAuthType,
+                        SuggestedActions = new MessagingExtensionSuggestedAction
                         {
-                            Type = MessagingExtensionAuthType,
-                            SuggestedActions = new MessagingExtensionSuggestedAction
-                            {
-                                Actions = new List<CardAction>
+                            Actions = new List<CardAction>
                                 {
                                     new CardAction
                                     {
@@ -219,107 +219,121 @@ namespace Microsoft.Teams.Apps.GroupBot.Bots
                                         Title = Strings.SigninCardText,
                                     },
                                 },
-                            },
                         },
-                    };
-                }
+                    },
+                };
+            }
 
-                var teamInformation = activity.TeamsGetTeamInfo();
-
-                if (teamInformation == null || string.IsNullOrEmpty(teamInformation.Id))
-                {
-                    return new MessagingExtensionActionResponse
-                    {
-                        Task = new TaskModuleContinueResponse
-                        {
-                            Value = new TaskModuleTaskInfo
-                            {
-                                Card = GroupActivityCard.GetTeamNotFoundErrorCard(),
-                                Height = TaskModuleValidationHeight,
-                                Width = TaskModuleValidationWidth,
-                                Title = Strings.GroupActivityTitle,
-                            },
-                        },
-                    };
-                }
-
-                var teamDetails = await TeamsInfo.GetTeamDetailsAsync(turnContext, teamInformation.Id, cancellationToken);
-                if (teamDetails == null)
-                {
-                    this.logger.LogInformation($"Team details obtained is null.");
-                    return new MessagingExtensionActionResponse
-                    {
-                        Task = new TaskModuleContinueResponse
-                        {
-                            Value = new TaskModuleTaskInfo
-                            {
-                                Card = GroupActivityCard.GetErrorMessageCard(),
-                                Height = TaskModuleValidationHeight,
-                                Width = TaskModuleValidationWidth,
-                                Title = Strings.GroupActivityTitle,
-                            },
-                        },
-                    };
-                }
-
-                var isTeamOwner = await this.teamUserHelper.VerifyIfUserIsTeamOwnerAsync(tokenResponse.Token, teamDetails.AadGroupId, activity.From.AadObjectId);
-                if (isTeamOwner == null)
-                {
-                    await turnContext.SendActivityAsync(Strings.CustomErrorMessage);
-                    return new MessagingExtensionActionResponse
-                    {
-                        Task = new TaskModuleContinueResponse
-                        {
-                            Value = new TaskModuleTaskInfo
-                            {
-                                Card = GroupActivityCard.GetErrorMessageCard(),
-                                Height = TaskModuleValidationHeight,
-                                Width = TaskModuleValidationWidth,
-                                Title = Strings.GroupActivityTitle,
-                            },
-                        },
-                    };
-                }
-
-                // If user is team member validation message is shown as only team owner can create a group activity.
-                if (isTeamOwner == false)
-                {
-                    return new MessagingExtensionActionResponse
-                    {
-                        Task = new TaskModuleContinueResponse
-                        {
-                            Value = new TaskModuleTaskInfo
-                            {
-                                Card = GroupActivityCard.GetTeamOwnerErrorCard(),
-                                Height = TaskModuleValidationHeight,
-                                Width = TaskModuleValidationWidth,
-                                Title = Strings.GroupActivityTitle,
-                            },
-                        },
-                    };
-                }
-
-                // Team owner can create group activity.
+            var teamInformation = activity.TeamsGetTeamInfo();
+            if (teamInformation == null || string.IsNullOrEmpty(teamInformation.Id))
+            {
                 return new MessagingExtensionActionResponse
                 {
                     Task = new TaskModuleContinueResponse
                     {
                         Value = new TaskModuleTaskInfo
                         {
-                            Card = GroupActivityCard.GetCreateGroupActivityCard(),
-                            Height = TaskModuleHeight,
-                            Width = TaskModuleWidth,
+                            Card = GroupActivityCard.GetTeamNotFoundErrorCard(),
+                            Height = TaskModuleValidationHeight,
+                            Width = TaskModuleValidationWidth,
                             Title = Strings.GroupActivityTitle,
                         },
                     },
                 };
             }
+
+            TeamDetails teamDetails;
+            try
+            {
+                teamDetails = await TeamsInfo.GetTeamDetailsAsync(turnContext, teamInformation.Id, cancellationToken);
+            }
             catch (Exception ex)
             {
-                await turnContext.SendActivityAsync(Strings.CustomErrorMessage);
-                this.logger.LogError(ex, $"Error in task module fetch activity from messaging extension for channel id : {activity.ChannelId}");
-                return null;
+                // if bot is not installed in team or not able to team roster, then show error response.
+                this.logger.LogError("Bot is not part of team roster", ex);
+                return new MessagingExtensionActionResponse
+                {
+                    Task = new TaskModuleContinueResponse
+                    {
+                        Value = new TaskModuleTaskInfo()
+                        {
+                            Card = GroupActivityCard.GetTeamNotFoundErrorCard(),
+                            Height = TaskModuleHeight,
+                            Width = TaskModuleHeight,
+                        },
+                    },
+                };
             }
+
+            if (teamDetails == null)
+            {
+                this.logger.LogInformation($"Team details obtained is null.");
+                return new MessagingExtensionActionResponse
+                {
+                    Task = new TaskModuleContinueResponse
+                    {
+                        Value = new TaskModuleTaskInfo
+                        {
+                            Card = GroupActivityCard.GetErrorMessageCard(),
+                            Height = TaskModuleValidationHeight,
+                            Width = TaskModuleValidationWidth,
+                            Title = Strings.GroupActivityTitle,
+                        },
+                    },
+                };
+            }
+
+            var isTeamOwner = await this.teamUserHelper.VerifyIfUserIsTeamOwnerAsync(tokenResponse.Token, teamDetails.AadGroupId, activity.From.AadObjectId);
+            if (isTeamOwner == null)
+            {
+                await turnContext.SendActivityAsync(Strings.CustomErrorMessage);
+                return new MessagingExtensionActionResponse
+                {
+                    Task = new TaskModuleContinueResponse
+                    {
+                        Value = new TaskModuleTaskInfo
+                        {
+                            Card = GroupActivityCard.GetErrorMessageCard(),
+                            Height = TaskModuleValidationHeight,
+                            Width = TaskModuleValidationWidth,
+                            Title = Strings.GroupActivityTitle,
+                        },
+                    },
+                };
+            }
+
+            // If user is team member validation message is shown as only team owner can create a group activity.
+            if (isTeamOwner == false)
+            {
+                return new MessagingExtensionActionResponse
+                {
+                    Task = new TaskModuleContinueResponse
+                    {
+                        Value = new TaskModuleTaskInfo
+                        {
+                            Card = GroupActivityCard.GetTeamOwnerErrorCard(),
+                            Height = TaskModuleValidationHeight,
+                            Width = TaskModuleValidationWidth,
+                            Title = Strings.GroupActivityTitle,
+                        },
+                    },
+                };
+            }
+
+            // Team owner can create group activity.
+            return new MessagingExtensionActionResponse
+            {
+                Task = new TaskModuleContinueResponse
+                {
+                    Value = new TaskModuleTaskInfo
+                    {
+                        Card = GroupActivityCard.GetCreateGroupActivityCard(),
+                        Height = TaskModuleHeight,
+                        Width = TaskModuleWidth,
+                        Title = Strings.GroupActivityTitle,
+                    },
+                },
+            };
         }
 
         /// <summary>
