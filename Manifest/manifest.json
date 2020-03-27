@@ -35,7 +35,7 @@
   ],
   "composeExtensions": [
     {
-      "botId": "d541c65f-68f8-42c7-a6ba-ff006f5861fe",
+      "botId": "<bot id>",
       "canUpdateConfiguration": true,
       "commands": [
         {
