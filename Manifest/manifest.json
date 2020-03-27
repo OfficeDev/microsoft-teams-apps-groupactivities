@@ -1,0 +1,109 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.5/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.5",
+  "version": "1.2.0",
+  "id": "23daff4d-00f9-4f9e-93f4-578333dd626d",
+  "packageName": "com.microsoft.teams.apptemplates.groupactivity",
+  "developer": {
+    "name": "<company name>",
+    "websiteUrl": "<website url>",
+    "privacyUrl": "<privacy url>",
+    "termsOfUseUrl": "<terms of use url>"
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "name": {
+    "short": "Group Activities",
+    "full": "Group Activities bot"
+  },
+  "description": {
+    "short": "Group Activities bot lets you divide your team into groups and assign activities",
+    "full": "Group Activities bot lets you quickly divide your team into groups and assign activities with deadlines. Team members are split randomly into groups and added into public/private channels based on user choice."
+  },
+  "accentColor": "#FFFFFF",
+  "bots": [
+    {
+      "botId": "<bot id>",
+      "scopes": [
+        "team"
+      ],
+      "supportsFiles": false,
+      "isNotificationOnly": false
+    }
+  ],
+  "composeExtensions": [
+    {
+      "botId": "d541c65f-68f8-42c7-a6ba-ff006f5861fe",
+      "canUpdateConfiguration": true,
+      "commands": [
+        {
+          "id": "recentActivities",
+          "type": "query",
+          "title": "Recent",
+          "description": "Search recent activities",
+          "initialRun": true,
+          "fetchTask": false,
+          "context": [
+            "compose"
+          ],
+          "parameters": [
+            {
+              "name": "RecentActivities",
+              "title": "RecentActivities",
+              "description": "Search recent activities",
+              "inputType": "text"
+            }
+          ]
+        },
+        {
+          "id": "allActivities",
+          "type": "query",
+          "title": "All",
+          "description": "Search all activities",
+          "initialRun": true,
+          "fetchTask": false,
+          "context": [
+            "compose"
+          ],
+          "parameters": [
+            {
+              "name": "allActivities",
+              "title": "All activities",
+              "description": "Search all activities",
+              "inputType": "text"
+            }
+          ]
+        },
+        {
+          "id": "group",
+          "type": "action",
+          "title": "New group activity",
+          "description": "Create a group activity",
+          "initialRun": true,
+          "fetchTask": true,
+          "context": [
+            "compose",
+            "message"
+          ],
+          "parameters": [
+            {
+              "name": "group",
+              "title": "New group activity",
+              "description": "Create a group activity"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "permissions": [
+    "identity",
+    "messageTeamMembers"
+  ],
+  "validDomains": [
+    "token.botframework.com",
+    "<validdomains>"
+  ]
+}

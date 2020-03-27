@@ -3,51 +3,57 @@ page_type: sample
 languages:
 - csharp
 products:
-- dotnet
-description: "Add 150 character max description"
-urlFragment: "update-this-to-unique-url-stub"
+- office-teams
+description: Teams application to create assignments and distribute the team members in randomized groups
+urlFragment: microsoft-teams-apps-groupactivities
 ---
 
-# Official Microsoft Sample
+| [Documentation](https://github.com/OfficeDev/microsoft-teams-apps-groupactivities/wiki) | [Deployment guide](https://github.com/OfficeDev/microsoft-teams-apps-groupactivities/wiki/Deployment-guide) | [Architecture](https://github.com/OfficeDev/microsoft-teams-apps-groupactivities/wiki/Solution-Overview)
+|--|--|--|
 
-<!-- 
-Guidelines on README format: https://review.docs.microsoft.com/help/onboard/admin/samples/concepts/readme-template?branch=master
+## Group Activities App Template
 
-Guidance on onboarding samples to docs.microsoft.com/samples: https://review.docs.microsoft.com/help/onboard/admin/samples/process/onboarding?branch=master
+For organizations including education institutions, there is often a need to create and collaborate in a group activity. Often, the process of creating and managing the groups and the collaboration around it takes more time than the activity itself. Group activities app makes it easy to quickly create groups for group activities along with providing an easy workflow to manage the collaboration all within the familiar context of Microsoft Teams canvas.
+ 
+Without Group Activities app, it would involve first doing the pairing manually, then going and creating the channels (or letting team members figure their own collaboration environment) and finally adding users to such private channels.
 
-Taxonomies for products and languages: https://review.docs.microsoft.com/new-hope/information-architecture/metadata/taxonomies?branch=master
--->
+Using the  app in Microsoft Teams, activity authors will have the ability to create assignments or activities and distribute the team members in a team/class in randomized groups depending on the grouping criteria and create Standard or Private channels for each of those groups that enables members to have their own workspace for collaboration. The activity author will be added to all standard channels created by the app.
 
-Give a short description for your sample here. What does it do and why is it important?
+The grouping criteria consists of two options
+ - Create groups by dividing into equal number of team members in each group
+ - Create groups by dividing team members into number of groups specified
 
-## Contents
+While creating a group activity, activity authors will also have the option to select if they would like the app to send reminders until each activity is scheduled to be completed. The app will send 2 reminders daily at 10 AM and 5 PM until the due date of the activity.
 
-Outline the file contents of the repository. It helps users navigate the codebase, build configuration and any related assets.
+![Group activity creating using messaging extension](https://github.com/OfficeDev/microsoft-teams-apps-groupactivities/wiki/Images/GroupActivities_01.png)
 
-| File/folder       | Description                                |
-|-------------------|--------------------------------------------|
-| `src`             | Sample source code.                        |
-| `.gitignore`      | Define what to ignore at commit time.      |
-| `CHANGELOG.md`    | List of changes to the sample.             |
-| `CONTRIBUTING.md` | Guidelines for contributing to the sample. |
-| `README.md`       | This README file.                          |
-| `LICENSE`         | The license for the sample.                |
+![Group activity create form](https://github.com/OfficeDev/microsoft-teams-apps-groupactivities/wiki/Images/GroupActivities_02.png)
 
-## Prerequisites
+![Activity summary message](https://github.com/OfficeDev/microsoft-teams-apps-groupactivities/wiki/Images/GroupActivities_03.png)
 
-Outline the required components and tools that a user might need to have on their machine in order to run the sample. This can be anything from frameworks, SDKs, OS versions or IDE releases.
 
-## Setup
+## Legal Notice
+Please read the license terms applicable to this app template [here](https://github.com/OfficeDev/microsoft-teams-apps-groupactivities/blob/master/LICENSE). In addition to these terms, by using this app template you agree to the following:
 
-Explain how to prepare the sample once the user clones or downloads the repository. The section should outline every step necessary to install dependencies and set up any settings (for example, API keys and output folders).
+* You are responsible for complying with applicable privacy and security regulations related to use, collection and handling of any personal data by your app.  This includes complying with all internal privacy and security policies of your organization if your app is developed to be sideloaded internally within your organization.
 
-## Running the sample
+* Microsoft will have no access to data collected through your app.  Microsoft will not be responsible for any data related incidents or data subject requests.
 
-Outline step-by-step instructions to execute the sample and see its output. Include steps for executing the sample from the IDE, starting specific services in the Azure portal or anything related to the overall launch of the code.
+* Any trademarks or registered trademarks of Microsoft in the United States and/or other countries and logos included in this repository are the property of Microsoft, and the license for this project does not grant you rights to use any Microsoft names, logos or trademarks outside of this repository.  Microsoft’s general trademark guidelines can be found [here](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general.aspx)
 
-## Key concepts
+* Use of this template does not guarantee acceptance of your app to the Teams app store.  To make this app available in the Teams app store, you will have to comply with [submission process and validation](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/deploy-and-publish/appsource/publish), and all associated requirements such as including your own privacy statement and terms of use for your app. 
 
-Provide users with more context on the tools and services used in the sample. Explain some of the code that is being used and how services interact with each other.
+## Getting Started
+
+Begin with the [Solution overview](https://github.com/OfficeDev/microsoft-teams-apps-groupactivities/wiki/Solution-Overview) to read about what the app does and how it works.
+
+When you're ready to try out Group Activities app, or to use it in your own organization, follow the steps in the [Deployment guide](https://github.com/OfficeDev/microsoft-teams-apps-groupactivities/wiki/Deployment-guide).
+
+## Feedback
+
+Thoughts? Questions? Ideas? Share them with us on [Teams UserVoice](https://microsoftteams.uservoice.com/forums/555103-public) !
+
+Please report bugs and other code issues [here](https://github.com/OfficeDev/microsoft-teams-apps-groupactivities/issues/new).
 
 ## Contributing
 

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.631
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Teams.Apps.GroupBot", "Microsoft.Teams.Apps.GroupBot\Microsoft.Teams.Apps.GroupBot.csproj", "{E6B5307D-8081-4A1A-BC60-D2D41E35B66F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Teams.Apps.GroupBot.Common", "Microsoft.Teams.Apps.GroupBot.Common\Microsoft.Teams.Apps.GroupBot.Common.csproj", "{3FCD0C76-DFA0-4DA6-93B8-62B0D3897E9B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6B5307D-8081-4A1A-BC60-D2D41E35B66F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6B5307D-8081-4A1A-BC60-D2D41E35B66F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6B5307D-8081-4A1A-BC60-D2D41E35B66F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6B5307D-8081-4A1A-BC60-D2D41E35B66F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FCD0C76-DFA0-4DA6-93B8-62B0D3897E9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FCD0C76-DFA0-4DA6-93B8-62B0D3897E9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FCD0C76-DFA0-4DA6-93B8-62B0D3897E9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FCD0C76-DFA0-4DA6-93B8-62B0D3897E9B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C2226E8A-D5CC-4BCE-ABD9-B4E5AC1D4767}
+	EndGlobalSection
+EndGlobal
