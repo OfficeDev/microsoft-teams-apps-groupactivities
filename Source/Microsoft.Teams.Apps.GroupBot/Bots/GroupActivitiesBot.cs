@@ -17,6 +17,7 @@ namespace Microsoft.Teams.Apps.GroupBot.Bots
     using Microsoft.Bot.Builder.Teams;
     using Microsoft.Bot.Schema;
     using Microsoft.Bot.Schema.Teams;
+    using Microsoft.Extensions.Caching.Memory;
     using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.Options;
     using Microsoft.Teams.Apps.GroupBot.Cards;
@@ -47,6 +48,11 @@ namespace Microsoft.Teams.Apps.GroupBot.Bots
         /// Sets the height of task module of validation message.
         /// </summary>
         private const string TaskModuleValidationHeight = "small";
+
+        /// <summary>
+        /// Sets the team members cache key.
+        /// </summary>
+        private const string TeamMembersCacheKey = "teamMembersCacheKey";
 
         /// <summary>
         /// Sets the width of task module of validation message.
@@ -143,7 +149,7 @@ namespace Microsoft.Teams.Apps.GroupBot.Bots
         /// <param name="teamUserHelper">Helper to get group members and verify if user is a team owner.</param>
         /// <param name="telemetryClient">Telemetry client.</param>
         /// <param name="logger">Instance to send logs to the Application Insights service.</param>
-        public GroupActivitiesBot(IOptionsMonitor<BotAppSetting> optionsAccessor, IChannelHelper channelHelper, IGroupingHelper groupingHelper, IGroupActivityStorageHelper groupActivityStorageHelper, ITeamUserHelper teamUserHelper, TelemetryClient telemetryClient, ILogger<GroupActivitiesBot> logger)
+        public GroupActivitiesBot(IOptionsMonitor<BotAppSetting> optionsAccessor, IChannelHelper channelHelper, IGroupingHelper groupingHelper, IGroupActivityStorageHelper groupActivityStorageHelper, ITeamUserHelper teamUserHelper, TelemetryClient telemetryClient, ILogger<GroupActivitiesBot> logger, IMemoryCache memoryCache)
         {
             this.options = optionsAccessor.CurrentValue;
             this.tenantId = this.options.TenantId;
@@ -433,15 +439,24 @@ namespace Microsoft.Teams.Apps.GroupBot.Bots
                     return this.ShowValidationForCreateChannel(valuesFromTaskModule, isSplittingValid: true);
                 }
 
-                var teamDetails = await TeamsInfo.GetTeamDetailsAsync(turnContext, teamInformation.Id, cancellationToken);
+                var teamMembers = new List<TeamsChannelAccount>();
+                string continuationToken = null;
 
-                // Get all channel members and owners in a team.
-                var teamMembers = await TeamsInfo.GetTeamMembersAsync(turnContext, teamInformation.Id, cancellationToken);
+                do
+                {
+                    var currentPage = await TeamsInfo.GetPagedTeamMembersAsync(turnContext, teamInformation.Id, continuationToken, pageSize: 500);
+                    continuationToken = currentPage.ContinuationToken;
+                    teamMembers.AddRange(currentPage.Members);
+                }
+                while (continuationToken != null);
+
                 if (teamMembers == null)
                 {
                     this.logger.LogError($"List of channel members and owners in a team obtained is null for team id : {teamInformation.Id}");
                     return new MessagingExtensionActionResponse();
                 }
+
+                var teamDetails = await TeamsInfo.GetTeamDetailsAsync(turnContext, teamInformation.Id, cancellationToken);
 
                 // Get list of members to perform grouping excluding team owners of the team.
                 var groupMembers = await this.teamUserHelper.GetGroupMembersAsync(token, teamDetails.AadGroupId, teamMembers);
